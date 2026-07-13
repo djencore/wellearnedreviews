@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer Login | WellEarnedReviews</title>
+<meta name="description" content="Sign in to your WellEarnedReviews dashboard. Enter your email or cell number and we send you a sign-in link. No password to remember.">
+<meta name="robots" content="noindex,follow">
+<link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://wellearnedreviews.com/login">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJW8E3ZW0S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KJW8E3ZW0S');</script><script defer src="/_vercel/insights/script.js"></script><script src="https://analytics.ahrefs.com/analytics.js" data-key="i+VM9lywOEdbn1zVOIK2nQ" async></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28">
+      WellEarnedReviews
+    </a>
+    <nav class="main">
+      <a class="navlink" href="/#how">How it works</a>
+      <a class="navlink" href="/#pricing">Pricing</a>
+      <a class="navlink" href="/demo">See a demo</a>
+      <a class="btn" href="/signup">Start for $99</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+<section>
+  <div class="wrap tool-wrap" style="max-width:520px">
+    <p class="kicker">Customer login</p>
+    <h1 class="sec">Open your dashboard</h1>
+
+    <div class="tool-panel" id="requestPanel">
+      <p style="margin-bottom:14px">Enter the email or cell number on your account. We'll send a sign-in link to what we have on file, by email and by text. It works for 15 minutes and keeps you signed in for 30 days.</p>
+      <label for="ident">Email or cell number</label>
+      <div class="row">
+        <input type="text" id="ident" placeholder="you@yourbusiness.com or (916) 555-0123" style="flex:1;min-width:220px" autocomplete="username">
+        <button class="btn" id="sendBtn" onclick="requestLink()">Send my link</button>
+      </div>
+      <p id="sentMsg" style="display:none;color:var(--ok);font-weight:700;margin-top:12px">Check your email and your texts. The link works for 15 minutes.</p>
+      <p id="errMsg" style="display:none;color:var(--alert);margin-top:12px"></p>
+      <div id="googleWrap" style="display:none;margin-top:20px">
+        <p style="font-size:.92rem;color:var(--quiet);margin-bottom:10px">Or, one click:</p>
+        <div id="gBtn"></div>
+      </div>
+      <p style="font-size:.9rem;color:var(--coal-2);margin-top:20px">No password. That's on purpose: a link sent to your own phone and inbox can't be guessed, reused, or leaked in a breach, because it expires and there's nothing stored to steal. Locked out or changed numbers? Text us at (619) 452-0435.</p>
+    </div>
+
+    <div class="tool-panel" id="verifyPanel" hidden>
+      <p id="verifyMsg">Signing you in...</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <p class="legal" style="text-align:center">&copy; 2026 WellEarnedReviews. <a href="/" style="color:#b5c6bd">Home</a> &middot; <a href="/privacy" style="color:#b5c6bd">Privacy</a> &middot; <a href="/terms" style="color:#b5c6bd">Terms</a></p>
+  </div>
+</footer>
+
+<script>
+function post(body){ return fetch('/api/auth',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json().then(function(j){return {status:r.status, j:j};});}); }
+function requestLink(){
+  var v = document.getElementById('ident').value.trim();
+  if(v.length < 6) return;
+  var btn = document.getElementById('sendBtn'); btn.disabled = true; btn.textContent = 'Sending...';
+  post({action:'request_link', identifier:v}).then(function(r){
+    btn.disabled = false; btn.textContent = 'Send my link';
+    document.getElementById('sentMsg').style.display = 'block';
+  }).catch(function(){ btn.disabled = false; btn.textContent = 'Send my link'; });
+}
+document.getElementById('ident').addEventListener('keydown', function(e){ if(e.key === 'Enter') requestLink(); });
+
+// arriving with a link: ?t=...
+var params = new URLSearchParams(location.search);
+var t = params.get('t');
+if (t) {
+  document.getElementById('requestPanel').hidden = true;
+  document.getElementById('verifyPanel').hidden = false;
+  post({action:'verify', token:t}).then(function(r){
+    if (r.j.ok) { location.href = '/api/dashboard'; }
+    else {
+      document.getElementById('verifyMsg').textContent = r.j.error || 'That link expired. Request a fresh one.';
+      setTimeout(function(){ document.getElementById('requestPanel').hidden = false; document.getElementById('verifyPanel').hidden = true; }, 1800);
+    }
+  });
+} else {
+  // already signed in? straight to the dashboard
+  post({action:'whoami'}).then(function(r){ if (r.j.signed_in) location.href = '/api/dashboard'; });
+}
+
+// Google button, only if configured
+post({action:'config'}).then(function(r){
+  if (!r.j.google_client_id) return;
+  var s = document.createElement('script');
+  s.src = 'https://accounts.google.com/gsi/client'; s.async = true;
+  s.onload = function(){
+    google.accounts.id.initialize({ client_id: r.j.google_client_id, callback: function(resp){
+      post({action:'google', credential: resp.credential}).then(function(x){
+        if (x.j.ok) location.href = '/api/dashboard';
+        else { var e = document.getElementById('errMsg'); e.textContent = x.j.error; e.style.display = 'block'; }
+      });
+    }});
+    google.accounts.id.renderButton(document.getElementById('gBtn'), { theme: 'outline', size: 'large', text: 'signin_with' });
+    document.getElementById('googleWrap').style.display = 'block';
+  };
+  document.head.appendChild(s);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free AI Review Response Generator | WellEarnedReviews</title>
+<meta name="description" content="Paste any customer review and get a calm, professional response you can post in seconds. Free, no signup, works for good reviews and rough ones.">
+<link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://wellearnedreviews.com/ai-review-response-generator">
+<meta property="og:title" content="Free AI Review Response Generator">
+<meta property="og:description" content="Paste a review, get a professional reply. Free, no signup.">
+<meta property="og:url" content="https://wellearnedreviews.com/ai-review-response-generator">
+<meta property="og:image" content="https://wellearnedreviews.com/img/wer-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"AI Review Response Generator","url":"https://wellearnedreviews.com/ai-review-response-generator","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free AI tool that writes a professional response to any customer review. No signup required."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How should I respond to a negative Google review?","acceptedAnswer":{"@type":"Answer","text":"Stay calm, thank them for the specifics, own what was actually your fault, say what changes, and take the rest offline with a direct contact. Never argue, never offer compensation in public, and never mention details a customer didn't raise themselves. The generator above follows those rules automatically."}},
+{"@type":"Question","name":"Should I respond to positive reviews too?","acceptedAnswer":{"@type":"Answer","text":"Yes. A short, specific thank-you signals to Google and to future customers that the business is alive and paying attention. Two sentences is plenty; mention the job or detail they praised so it doesn't read like a form letter."}},
+{"@type":"Question","name":"Is this free?","acceptedAnswer":{"@type":"Answer","text":"Yes, free and no signup. It's built by WellEarnedReviews, a service that posts responses like these automatically, so this tool is our best sales pitch."}}
+]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJW8E3ZW0S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KJW8E3ZW0S');</script><script defer src="/_vercel/insights/script.js"></script><script src="https://analytics.ahrefs.com/analytics.js" data-key="i+VM9lywOEdbn1zVOIK2nQ" async></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28">
+      WellEarnedReviews
+    </a>
+    <nav class="main">
+      <a class="navlink" href="/#how">How it works</a>
+      <a class="navlink" href="/#pricing">Pricing</a>
+      <a class="navlink" href="/demo">See a demo</a>
+      <a class="btn" href="/signup">Start for $99</a>
+    </nav>
+  </div>
+</header>
+<div class="mnav" aria-label="Quick navigation"><a href="/google-review-link-generator">Free tools</a><a href="/demo">Demo</a><a href="/#how">How it works</a><a href="/#pricing">Pricing</a><a href="/contact">Contact</a><a href="/login">Customer login</a></div>
+
+<main>
+<section>
+  <div class="wrap tool-wrap">
+    <p class="kicker">Free tool, no signup</p>
+    <h1 class="sec">AI review response generator</h1>
+    <p>Paste the review, pick the star rating, and get a response you'd be comfortable posting under your business's name. It thanks the good ones without gushing and answers the rough ones without groveling. Free, and it never argues with a customer.</p>
+
+    <div class="tool-panel">
+      <label for="review">The customer's review</label>
+      <textarea id="review" maxlength="2000" placeholder="Work was fine but they showed up two hours late and nobody called."></textarea>
+      <label>Star rating they gave</label>
+      <div class="stars-pick" id="stars" aria-label="Select star rating">
+        <span data-v="1">&#9733;</span><span data-v="2">&#9733;</span><span data-v="3">&#9733;</span><span data-v="4">&#9733;</span><span data-v="5">&#9733;</span>
+      </div>
+      <label for="biz">Your business name <span class="hint">Optional, makes the reply feel signed</span></label>
+      <input type="text" id="biz" placeholder="Ridgeline Roofing">
+      <label for="tone">Tone</label>
+      <select id="tone">
+        <option value="warm">Warm and personal</option>
+        <option value="professional">Straight and professional</option>
+        <option value="brief">Short and gracious</option>
+      </select>
+      <input type="text" id="hp2" style="position:absolute;left:-6000px" tabindex="-1" aria-hidden="true">
+      <p style="margin-top:20px"><button class="btn big" id="genBtn" onclick="generate()" style="width:100%">Write my response</button></p>
+      <p id="genErr" style="display:none;color:var(--alert);font-weight:600;margin-top:10px">The generator hit a snag. Give it another try in a few seconds.</p>
+    </div>
+
+    <div class="tool-panel" id="out" hidden>
+      <h3>Your response</h3>
+      <div class="result-box" style="word-break:normal"><span id="respText"></span></div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn small" onclick="navigator.clipboard.writeText(document.getElementById('respText').textContent)">Copy response</button>
+        <button class="btn small ghost" onclick="generate()">Try another version</button>
+      </div>
+    </div>
+
+    <div class="cta-strip" id="cta" hidden>
+      <p><b>Now imagine never doing this again.</b> WellEarnedReviews posts replies like this automatically: the five-star thank-yous go out on their own, and the rough ones arrive on your phone with the reply drafted, waiting for one tap.</p>
+      <a class="btn big" href="/signup">Start your $99 first month</a>
+    </div>
+
+    <div class="faq" style="margin-top:44px">
+      <h3 style="margin-bottom:8px">Quick answers</h3>
+      <details><summary>How should I respond to a negative Google review?</summary><p>Stay calm, thank them for the specifics, own what was actually your fault, say what changes, and take the rest offline with a direct contact. Never argue, never offer compensation in public, and never mention details a customer didn't raise themselves. The generator follows those rules automatically.</p></details>
+      <details><summary>Should I respond to positive reviews too?</summary><p>Yes. A short, specific thank-you signals to Google and to future customers that the business is alive and paying attention. Two sentences is plenty; mention the detail they praised so it doesn't read like a form letter.</p></details>
+      <details><summary>Is this free?</summary><p>Yes, free and no signup. It's built by WellEarnedReviews, a service that posts responses like these automatically, so this tool is our best sales pitch.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28"><span class="name">WellEarnedReviews</span></a>
+      </div>
+      <div>
+        <h4>Free tools</h4>
+        <a href="/google-review-link-generator">Review link + QR generator</a>
+        <a href="/ai-review-response-generator">AI review response generator</a>
+        <a href="/review-request-templates">Review request templates</a>
+        <a href="/free-reputation-report">Free reputation report</a>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <a href="/google-business-profile-setup">Set up your Google profile</a>
+        <a href="/good-review-examples">Good review examples</a>
+        <a href="/reputation-marketing">Reputation marketing</a>
+        <a href="/best-reputation-management-software">Best reputation software</a>
+        <a href="/hotel-review-management">Hotel review management</a>
+        <a href="/dental-review-management">Dental review management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="tel:+16194520435">Call or text (619) 452-0435</a>
+        <a href="/contact">Contact us</a>
+        <a href="/login">Customer login</a>
+        <a href="/integrations">Integrations</a>
+        <a href="/privacy">Privacy policy</a>
+        <a href="/terms">Terms of service</a>
+      </div>
+    </div>
+    <p class="legal">&copy; 2026 WellEarnedReviews.</p>
+  </div>
+</footer>
+
+<script>
+var rating=0;
+document.querySelectorAll('#stars span').forEach(function(s){
+  s.onclick=function(){
+    rating=parseInt(this.dataset.v);
+    document.querySelectorAll('#stars span').forEach(function(x){ x.className = parseInt(x.dataset.v)<=rating?'on':''; });
+  };
+});
+function generate(){
+  var review=document.getElementById('review').value.trim();
+  if(review.length<10){ document.getElementById('review').style.borderColor='#b2492e'; return; }
+  if(!rating){ rating=3; document.querySelectorAll('#stars span').forEach(function(x){ x.className=parseInt(x.dataset.v)<=3?'on':''; }); }
+  var btn=document.getElementById('genBtn'); btn.disabled=true; btn.innerHTML='Writing... <span class="spin"></span>';
+  document.getElementById('genErr').style.display='none';
+  fetch('/api/generate-response',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({review:review,rating:rating,tone:document.getElementById('tone').value,biz:document.getElementById('biz').value.trim(),hp:document.getElementById('hp2').value})})
+    .then(function(r){return r.json();})
+    .then(function(d){
+      btn.disabled=false; btn.textContent='Write my response';
+      if(d.ok && d.text){
+        document.getElementById('respText').textContent=d.text;
+        document.getElementById('out').hidden=false;
+        document.getElementById('cta').hidden=false;
+        document.getElementById('out').scrollIntoView({behavior:'smooth'});
+      } else { document.getElementById('genErr').style.display='block'; }
+    })
+    .catch(function(){ btn.disabled=false; btn.textContent='Write my response'; document.getElementById('genErr').style.display='block'; });
+}
+</script>
+</body>
+</html>

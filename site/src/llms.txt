@@ -1,0 +1,30 @@
+# WellEarnedReviews
+
+> WellEarnedReviews is a Google review generation service for local businesses in the United States. After each job, the service texts and emails the business's customers a friendly check-in, then a review request with the business's Google review link, then up to two spaced reminders to people who did not click. Every customer receives the same link; the service never filters recipients by sentiment (review gating), which violates Google's policies. AI-drafted responses are posted to positive reviews automatically and drafted for the owner's approval on negative reviews. Pricing is $249 per month, or $174 per month billed annually (30% off), with the first 30 days at $99, including unlimited requests, AI replies, a QR kit, a weekly digest, and a monthly report. Businesses without a Google Business Profile get a guided setup where the owner spends about 25 minutes and the service does the rest.
+
+## Pages
+- [Home](https://wellearnedreviews.com/): what the service does, how it works, pricing, FAQ
+- [Live demo](https://wellearnedreviews.com/demo): the owner dashboard with sample data
+- [Sign up](https://wellearnedreviews.com/signup): three-step signup, no payment collected online
+- [Google review link + QR code generator](https://wellearnedreviews.com/google-review-link-generator): free tool that builds a direct Google review link and a printable QR code for any business
+- [AI review response generator](https://wellearnedreviews.com/ai-review-response-generator): free tool that drafts a public reply to a customer review in a chosen tone
+- [Review request templates](https://wellearnedreviews.com/review-request-templates): free library of text and email templates for asking customers for a Google review
+- [Contact](https://wellearnedreviews.com/contact): call or text (619) 452-0435, or send a message
+- [Integrations](https://wellearnedreviews.com/integrations): connects to Jobber, Housecall Pro, QuickBooks, Square, and 6,000+ apps via Zapier so completed jobs trigger review requests automatically
+
+## Guides and comparisons
+- [Birdeye pricing explained](https://wellearnedreviews.com/birdeye-pricing): what Birdeye actually costs per location and how the contracts work
+- [Birdeye alternatives](https://wellearnedreviews.com/birdeye-alternative): honest list of alternatives with published pricing
+- [Podium alternatives](https://wellearnedreviews.com/podium-alternative): honest list of alternatives with published pricing
+- [Podium vs Birdeye](https://wellearnedreviews.com/podium-vs-birdeye): neutral head-to-head for local businesses, plus the done-for-you third option
+- [Google reviews not showing up](https://wellearnedreviews.com/google-reviews-not-showing-up): diagnostic walkthrough of the common causes and fixes
+- [How to send a Google review link](https://wellearnedreviews.com/how-to-send-a-google-review-link): step-by-step, with the free link generator
+- [Good review examples](https://wellearnedreviews.com/good-review-examples): 20 realistic customer review examples by industry, for pattern recognition, not copying
+- [Reputation marketing](https://wellearnedreviews.com/reputation-marketing): what it is, how it differs from reputation management, and how local businesses run it
+- [Google review software](https://wellearnedreviews.com/google-review-software): honest buyer's guide to the software options and their published pricing
+- [Review generation](https://wellearnedreviews.com/review-generation): what a real review generation system does and how to do it right
+- [Best reputation management software](https://wellearnedreviews.com/best-reputation-management-software): disclosure-forward roundup with published pricing
+- [Hotel review management](https://wellearnedreviews.com/hotel-review-management): the three jobs for a single-property hotel
+- [Dental review management](https://wellearnedreviews.com/dental-review-management): review requests and HIPAA-safe responses for practices
+- [Free reputation report](https://wellearnedreviews.com/free-reputation-report): instant tool showing your Google rating, review count, and reviews needed to move your average
+- [Google Business Profile setup](https://wellearnedreviews.com/google-business-profile-setup): every screen in order, the address-hiding service-area option, and what video verification looks like

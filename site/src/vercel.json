@@ -1,0 +1,16 @@
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "rewrites": [
+    { "source": "/r/:token", "destination": "/api/r?c=:token" }
+  ],
+  "redirects": [
+    { "source": "/", "has": [{ "type": "host", "value": "crm.wellearnedreviews.com" }], "destination": "/admin", "permanent": false },
+    { "source": "/admin", "has": [{ "type": "host", "value": "wellearnedreviews.com" }], "destination": "https://crm.wellearnedreviews.com/admin", "permanent": false },
+    { "source": "/:path((?!admin$|api/|_vercel|styles\\.css$|favicon|img/|apple-touch-icon).+)", "has": [{ "type": "host", "value": "crm.wellearnedreviews.com" }], "destination": "https://wellearnedreviews.com/:path", "permanent": false }
+  ],
+  "crons": [
+    { "path": "/api/drip", "schedule": "0 16 * * *" },
+    { "path": "/api/engine-tick", "schedule": "0 * * * *" }
+  ]
+}

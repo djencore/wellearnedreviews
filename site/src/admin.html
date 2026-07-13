@@ -1,0 +1,182 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>WER Admin</title>
+<link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJW8E3ZW0S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KJW8E3ZW0S');</script><script defer src="/_vercel/insights/script.js"></script><script src="https://analytics.ahrefs.com/analytics.js" data-key="i+VM9lywOEdbn1zVOIK2nQ" async></script>
+</head>
+<body>
+<main><section><div class="wrap" style="max-width:720px">
+<p class="kicker">Operator console</p>
+<h2 class="sec">WER Admin</h2>
+<div class="tool-panel">
+  <label for="sec">Admin secret</label>
+  <input type="text" id="sec" placeholder="paste ADMIN_SECRET">
+  <p style="margin-top:14px"><button class="btn" onclick="loadList()">Load businesses</button></p>
+</div>
+<div class="tool-panel">
+  <h3>Pipeline</h3>
+  <p><button class="btn" onclick="loadPipeline()">Load pipeline</button> <span id="pipestatus" class="mono" style="font-size:.85rem"></span></p>
+  <div id="pipe" style="font-size:.92rem"></div>
+</div>
+<div class="tool-panel">
+  <h3>Businesses</h3>
+  <div id="bizlist" style="font-size:.92rem"></div>
+</div>
+<div class="tool-panel">
+  <h3>Add business</h3>
+  <label>Name</label><input id="b_name" type="text" placeholder="Ridgeline Roofing">
+  <label>Owner first name</label><input id="b_owner" type="text" placeholder="Mike">
+  <label>Owner email</label><input id="b_email" type="email">
+  <label>Owner cell</label><input id="b_cell" type="tel">
+  <label>Google review link</label><input id="b_link" type="text" placeholder="https://search.google.com/local/writereview?placeid=...">
+  <label>Place ID (for rating tracking)</label><input id="b_place" type="text">
+  <label>Industry</label>
+  <select id="b_ind"><option value="general">general</option><option value="contractor">contractor</option><option value="dental">dental</option><option value="salon">salon</option><option value="auto">auto</option><option value="events">events</option></select>
+  <label style="font-weight:400;display:flex;gap:8px;margin-top:12px"><input type="checkbox" id="b_sms"> SMS enabled (only for businesses covered by an approved A2P campaign)</label>
+  <label style="font-weight:400;display:flex;gap:8px;margin-top:8px"><input type="checkbox" id="b_comp"> Comp account (free tester: plan=comp, $0, never billed)</label>
+  <p style="margin-top:14px"><button class="btn" onclick="addBiz()">Add business</button> <span id="bizout" class="mono" style="font-size:.85rem"></span></p>
+</div>
+<div class="tool-panel">
+  <h3>Add contacts</h3>
+  <label>Business ID</label><input id="c_biz" type="text" placeholder="from list above">
+  <label>Contacts, one per line: First, cell, email, job<span class="hint">Leave fields empty but keep commas: "Sarah,,sarah@x.com,roof repair"</span></label>
+  <textarea id="c_rows" style="min-height:140px" placeholder="Sarah,9165550134,sarah@example.com,roof replacement"></textarea>
+  <p style="margin-top:14px"><button class="btn" onclick="addContacts()">Queue contacts</button> <span id="cout" class="mono" style="font-size:.85rem"></span></p>
+</div>
+</div></section></main>
+<script>
+function hdr(){ return {'Content-Type':'application/json','Authorization':'Bearer '+document.getElementById('sec').value.trim()}; }
+function loadList(){
+  fetch('/api/engine-admin',{method:'POST',headers:hdr(),body:JSON.stringify({action:'list'})}).then(r=>r.json()).then(d=>{
+    if(!d.ok){document.getElementById('bizlist').textContent='auth failed';return;}
+    document.getElementById('bizlist').innerHTML=d.businesses.map(b=>'<p style="border-bottom:1px solid var(--edge);padding:8px 0"><b>'+b.name+'</b>'+(b.plan==='comp'?' <span style="background:var(--trust-soft);color:var(--trust-deep);font-size:.75rem;font-weight:700;padding:2px 7px;border-radius:4px">COMP</span>':'')+' <span class="mono">'+b.id+'</span> &middot; '+(d.contactCounts[b.id]||0)+' contacts &middot; sms:'+b.sms_ok+' &middot; <a href="'+b.scoreboard+'" target="_blank">scoreboard</a> &middot; <a href="#" onclick="invite(\''+b.id+'\',this);return false">send invite</a></p>').join('')||'none yet';
+  });
+}
+function addBiz(){
+  fetch('/api/engine-admin',{method:'POST',headers:hdr(),body:JSON.stringify({action:'add_business',
+    name:document.getElementById('b_name').value.trim(), owner_first:document.getElementById('b_owner').value.trim(),
+    owner_email:document.getElementById('b_email').value.trim(), owner_cell:document.getElementById('b_cell').value.trim(),
+    review_link:document.getElementById('b_link').value.trim(), place_id:document.getElementById('b_place').value.trim(),
+    industry:document.getElementById('b_ind').value, sms_ok:document.getElementById('b_sms').checked, comp:document.getElementById('b_comp').checked
+  })}).then(r=>r.json()).then(d=>{ document.getElementById('bizout').textContent=d.ok?('created: '+d.id):'failed'; loadList(); });
+}
+function invite(id,el){
+  el.textContent='sending...';
+  fetch('/api/engine-admin',{method:'POST',headers:hdr(),body:JSON.stringify({action:'invite',biz_id:id})})
+    .then(r=>r.json()).then(d=>{ el.textContent=d.ok?('invited ('+(d.sent.join('+')||'no channel on file')+')'):'failed'; });
+}
+function addContacts(){
+  var contacts=document.getElementById('c_rows').value.trim().split('\n').map(function(l){
+    var p=l.split(','); return {first:(p[0]||'').trim(), cell:(p[1]||'').trim(), email:(p[2]||'').trim(), job:(p[3]||'').trim()};
+  }).filter(function(c){return c.first;});
+  fetch('/api/engine-admin',{method:'POST',headers:hdr(),body:JSON.stringify({action:'add_contacts',biz_id:document.getElementById('c_biz').value.trim(),contacts:contacts})})
+    .then(r=>r.json()).then(d=>{ document.getElementById('cout').textContent=d.ok?('queued '+d.added):'failed'; });
+}
+function esc(s){
+  return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+function jsq(s){
+  return esc(JSON.stringify(String(s==null?'':s)));
+}
+function stageLabel(s){ return s==='at_risk' ? 'at risk' : s; }
+function todayStr(){
+  var d=new Date();
+  var m=String(d.getMonth()+1); if(m.length<2) m='0'+m;
+  var day=String(d.getDate()); if(day.length<2) day='0'+day;
+  return d.getFullYear()+'-'+m+'-'+day;
+}
+function toggleEditor(row){
+  var el=document.getElementById('ed'+row);
+  if(!el) return;
+  el.style.display = el.style.display==='none' ? 'block' : 'none';
+}
+function loadPipeline(){
+  document.getElementById('pipestatus').textContent='';
+  fetch('/api/engine-admin',{method:'POST',headers:hdr(),body:JSON.stringify({action:'pipeline'})}).then(r=>r.json()).then(d=>{
+    if(!d.ok){ document.getElementById('pipestatus').textContent=d.error||'failed'; return; }
+    renderPipeline(d);
+  });
+}
+function moveStage(row,email,to){
+  fetch('/api/engine-admin',{method:'POST',headers:hdr(),body:JSON.stringify({action:'move_stage',row:row,email:email,to:to})}).then(r=>r.json()).then(d=>{
+    if(!d.ok){ document.getElementById('pipestatus').textContent=d.error||'failed'; return; }
+    loadPipeline();
+  });
+}
+function setNext(row,email){
+  var na=document.getElementById('na'+row).value;
+  var nd=document.getElementById('nd'+row).value;
+  fetch('/api/engine-admin',{method:'POST',headers:hdr(),body:JSON.stringify({action:'set_next',row:row,email:email,next_action:na,next_due:nd})}).then(r=>r.json()).then(d=>{
+    if(!d.ok){ document.getElementById('pipestatus').textContent=d.error||'failed'; return; }
+    loadPipeline();
+  });
+}
+function pipeCard(lead,stages,businesses,today){
+  var stageAt=lead.stage_at||lead.ts;
+  var days=0;
+  if(stageAt){
+    var diff=Date.now()-Date.parse(stageAt);
+    if(!isNaN(diff)) days=Math.max(0,Math.floor(diff/86400000));
+  }
+  var line2=[];
+  if(lead.kind) line2.push(esc(lead.kind));
+  if(lead.source) line2.push(esc(lead.source));
+  if(lead.utm) line2.push(esc(lead.utm.slice(0,40)));
+  line2.push('in stage '+days+'d');
+  var bizInfo=businesses[lead.business_id];
+  if(bizInfo && bizInfo.mrr) line2.push('$'+esc(bizInfo.mrr)+'/mo');
+  var overdue=lead.next_due && lead.next_due<today;
+  var naText=lead.next_action?esc(lead.next_action):'no next action set';
+  var dueText=lead.next_due?esc(lead.next_due):'';
+  var line3='<span style="'+(overdue?'color:var(--alert);font-weight:700':'')+'">'+naText+(dueText?' ('+dueText+')':'')+'</span> <a href="#" class="mono" style="font-size:.8rem" onclick="toggleEditor('+lead.row+');return false;">edit</a>';
+  var editor='<p id="ed'+lead.row+'" style="display:none;margin-top:8px">'
+    +'<input type="text" id="na'+lead.row+'" value="'+esc(lead.next_action)+'" placeholder="next action" style="display:inline-block;width:auto;margin-right:8px">'
+    +'<input type="date" id="nd'+lead.row+'" value="'+esc(lead.next_due)+'" style="display:inline-block;width:auto;margin-right:8px">'
+    +'<button class="btn ghost small" onclick="setNext('+lead.row+','+jsq(lead.email)+')">Save</button>'
+    +'</p>';
+  var moves=stages.filter(function(s){return s!==lead.stage;}).map(function(s){
+    return '<button class="btn ghost" style="font-size:.75rem;padding:4px 8px;margin:4px 6px 0 0" onclick="moveStage('+lead.row+','+jsq(lead.email)+','+jsq(s)+')">'+esc(stageLabel(s))+'</button>';
+  }).join('');
+  return '<div style="border-bottom:1px solid var(--edge);padding:8px 0">'
+    +'<div><b>'+esc(lead.name||lead.email)+'</b> <small class="mono">'+esc(lead.biz)+'</small></div>'
+    +'<div style="font-size:.82rem;color:var(--quiet);margin-top:2px">'+line2.join(' &middot; ')+'</div>'
+    +'<div style="margin-top:4px">'+line3+'</div>'
+    +editor
+    +'<div style="margin-top:6px">'+moves+'</div>'
+    +'</div>';
+}
+function renderPipeline(d){
+  var today=todayStr();
+  var todayLeads=d.leads.filter(function(l){
+    return l.next_due && l.next_due<=today && l.stage!=='churned' && l.stage!=='lost';
+  }).sort(function(a,b){ return a.next_due<b.next_due?-1:(a.next_due>b.next_due?1:0); });
+  var html='<p class="kicker">Today</p>';
+  if(!todayLeads.length){
+    html+='<p>Nothing due today.</p>';
+  } else {
+    html+=todayLeads.map(function(l){
+      var red=l.next_due<today;
+      return '<p style="border-bottom:1px solid var(--edge);padding:8px 0"><span class="mono" style="'+(red?'color:var(--alert)':'')+'">'+esc(l.next_due)+'</span> '+esc(l.name||l.email)+' &middot; '+esc(l.biz)+' &middot; '+esc(l.next_action)+'</p>';
+    }).join('');
+  }
+  d.stages.forEach(function(s){
+    var stageLeads=d.leads.filter(function(l){return l.stage===s;});
+    var heading=esc(stageLabel(s))+' ('+stageLeads.length+')';
+    var cards=stageLeads.map(function(l){return pipeCard(l,d.stages,d.businesses,today);}).join('')||'<p style="color:var(--quiet);padding:8px 0">none</p>';
+    if(s==='churned'||s==='lost'){
+      html+='<details style="margin-top:16px"><summary style="font-weight:700;cursor:pointer;padding:6px 0">'+heading+'</summary>'+cards+'</details>';
+    } else {
+      html+='<p style="font-weight:700;margin-top:18px;margin-bottom:6px">'+heading+'</p>'+cards;
+    }
+  });
+  document.getElementById('pipe').innerHTML=html;
+}
+</script>
+</body>
+</html>

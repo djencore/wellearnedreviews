@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Google Review Link + QR Code Generator | WellEarnedReviews</title>
+<meta name="description" content="Make your Google review link and a printable QR code in about 30 seconds. Free, no signup. Search your business or paste your link, then download the QR kit.">
+<link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://wellearnedreviews.com/google-review-link-generator">
+<meta property="og:title" content="Free Google Review Link + QR Code Generator">
+<meta property="og:description" content="Search your business, get your review link and a printable QR code. Free, no signup.">
+<meta property="og:url" content="https://wellearnedreviews.com/google-review-link-generator">
+<meta property="og:image" content="https://wellearnedreviews.com/img/wer-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Google Review Link + QR Code Generator","url":"https://wellearnedreviews.com/google-review-link-generator","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free tool that generates a direct Google review link and a printable QR code for any business. No signup required."}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I get my Google review link?","acceptedAnswer":{"@type":"Answer","text":"Search your business name in the generator above and pick your listing; the tool builds the direct review link from your Google Place ID. Or open your Google Business Profile, tap Ask for reviews, and paste that link here to make the QR code."}},
+{"@type":"Question","name":"Is this really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The link, the QR code, and the printable counter card are free with no signup. We make our money on a paid service that sends review requests automatically, and we're happy to earn your attention this way first."}},
+{"@type":"Question","name":"Where should I put the QR code?","acceptedAnswer":{"@type":"Answer","text":"Wherever a happy customer stands still for a moment: the front counter, the invoice, the receipt, the back of a business card, the job-site sign, or the thank-you email. One scan takes them straight to the five-star form."}}
+]}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJW8E3ZW0S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KJW8E3ZW0S');</script><script defer src="/_vercel/insights/script.js"></script><script src="https://analytics.ahrefs.com/analytics.js" data-key="i+VM9lywOEdbn1zVOIK2nQ" async></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28">
+      WellEarnedReviews
+    </a>
+    <nav class="main">
+      <a class="navlink" href="/#how">How it works</a>
+      <a class="navlink" href="/#pricing">Pricing</a>
+      <a class="navlink" href="/demo">See a demo</a>
+      <a class="btn" href="/signup">Start for $99</a>
+    </nav>
+  </div>
+</header>
+<div class="mnav" aria-label="Quick navigation"><a href="/google-review-link-generator">Free tools</a><a href="/demo">Demo</a><a href="/#how">How it works</a><a href="/#pricing">Pricing</a><a href="/contact">Contact</a><a href="/login">Customer login</a></div>
+
+<main>
+<section>
+  <div class="wrap tool-wrap">
+    <p class="kicker">Free tool, no signup</p>
+    <h1 class="sec">Google review link + QR code generator</h1>
+    <p>Your direct review link opens Google's five-star form in one tap, and this tool builds it in about 30 seconds. Search your business below, or paste the link you already have, and you'll get the link plus a printable QR code for your counter, invoices, and business cards.</p>
+
+    <div class="tool-panel">
+      <h3>Find your business</h3>
+      <label for="bizq">Business name and city</label>
+      <div class="row">
+        <input type="text" id="bizq" placeholder="Ridgeline Roofing Lincoln CA" style="flex:1;min-width:220px">
+        <button class="btn" id="searchBtn" onclick="doSearch()">Search</button>
+      </div>
+      <div id="places"></div>
+      <p id="searchFail" style="display:none;color:var(--coal-2);margin-top:12px;font-size:.94rem">Search is napping right now. No problem: use the paste option below, it works every time.</p>
+
+      <h3 style="margin-top:26px">Or paste your review link</h3>
+      <p style="font-size:.92rem;color:var(--quiet);margin-bottom:8px">In your Google Business Profile app or dashboard, tap "Ask for reviews" and copy the link it shows you.</p>
+      <div class="row">
+        <input type="text" id="pasted" placeholder="https://g.page/r/..." style="flex:1;min-width:220px">
+        <button class="btn ghost" onclick="usePasted()">Use this link</button>
+      </div>
+    </div>
+
+    <div class="tool-panel" id="output" hidden>
+      <h3>Your review kit</h3>
+      <div class="result-box">
+        <p class="lead-line" id="bizLabel"></p>
+        <span class="mono" id="finalLink"></span>
+      </div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn small" onclick="copyLink()">Copy link</button>
+        <button class="btn small ghost" onclick="downloadQR()">Download QR (PNG)</button>
+        <button class="btn small ghost" onclick="window.print()">Print counter card</button>
+      </div>
+      <div class="qr-holder">
+        <div id="qrbox"></div>
+        <div style="flex:1;min-width:200px">
+          <p style="font-size:.94rem;color:var(--coal-2)">Scan it once yourself to make sure it lands on your five-star form. Then put it where happy customers stand still: the counter, the invoice, the truck door.</p>
+        </div>
+      </div>
+      <h3 style="margin-top:24px">Email me the kit</h3>
+      <p style="font-size:.92rem;color:var(--quiet);margin-bottom:8px">We'll send the link and the QR image to your inbox so it's there when you need it.</p>
+      <div class="row">
+        <input type="email" id="kitEmail" placeholder="you@yourbusiness.com" style="flex:1;min-width:220px">
+        <button class="btn small" id="kitBtn" onclick="emailKit()">Send it</button>
+      </div>
+      <label style="font-weight:400;display:flex;gap:8px;align-items:flex-start;margin-top:12px;cursor:pointer;font-size:.9rem;color:var(--coal-2)">
+        <input type="checkbox" id="kitConsent" style="margin-top:3px;accent-color:#00a06b">
+        <span>Also send me occasional tips on getting more reviews. Unsubscribe anytime.</span>
+      </label>
+      <p id="kitDone" style="display:none;color:var(--ok);font-weight:700;margin-top:10px">Sent. Check your inbox.</p>
+    </div>
+
+    <div class="cta-strip" id="cta" hidden>
+      <p><b>The link is step one.</b> The reviews come when someone actually asks. WellEarnedReviews texts your customers after each job, asks politely, and reminds the ones who forgot, so the link you just made gets used every week.</p>
+      <a class="btn big" href="/signup">Start your $99 first month</a>
+    </div>
+
+    <div class="faq" style="margin-top:44px">
+      <h3 style="margin-bottom:8px">Quick answers</h3>
+      <details><summary>How do I get my Google review link?</summary><p>Search your business name above and pick your listing; the tool builds the direct review link from your Google Place ID. Or open your Google Business Profile, tap "Ask for reviews," and paste that link here to make the QR code.</p></details>
+      <details><summary>Is this really free?</summary><p>Yes. The link, the QR code, and the printable card are free with no signup. We make our money on a paid service that sends review requests automatically, and we're happy to earn your attention this way first.</p></details>
+      <details><summary>Where should I put the QR code?</summary><p>Wherever a happy customer stands still for a moment: the front counter, the invoice, the receipt, the back of a business card, the job-site sign, or the thank-you email. One scan takes them straight to the five-star form.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28"><span class="name">WellEarnedReviews</span></a>
+      </div>
+      <div>
+        <h4>Free tools</h4>
+        <a href="/google-review-link-generator">Review link + QR generator</a>
+        <a href="/ai-review-response-generator">AI review response generator</a>
+        <a href="/review-request-templates">Review request templates</a>
+        <a href="/free-reputation-report">Free reputation report</a>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <a href="/google-business-profile-setup">Set up your Google profile</a>
+        <a href="/good-review-examples">Good review examples</a>
+        <a href="/reputation-marketing">Reputation marketing</a>
+        <a href="/best-reputation-management-software">Best reputation software</a>
+        <a href="/hotel-review-management">Hotel review management</a>
+        <a href="/dental-review-management">Dental review management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="tel:+16194520435">Call or text (619) 452-0435</a>
+        <a href="/contact">Contact us</a>
+        <a href="/login">Customer login</a>
+        <a href="/integrations">Integrations</a>
+        <a href="/privacy">Privacy policy</a>
+        <a href="/terms">Terms of service</a>
+      </div>
+    </div>
+    <p class="legal">&copy; 2026 WellEarnedReviews.</p>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+var qrObj=null, currentLink="", currentBiz="";
+function doSearch(){
+  var q=document.getElementById('bizq').value.trim();
+  if(q.length<3) return;
+  var btn=document.getElementById('searchBtn'); btn.disabled=true; btn.innerHTML='<span class="spin"></span>';
+  fetch('/api/place-search?q='+encodeURIComponent(q))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      btn.disabled=false; btn.textContent='Search';
+      var box=document.getElementById('places'); box.innerHTML='';
+      if(!d.ok || !d.places || !d.places.length){ document.getElementById('searchFail').style.display='block'; return; }
+      document.getElementById('searchFail').style.display='none';
+      d.places.forEach(function(p){
+        var el=document.createElement('div'); el.className='place-item';
+        el.innerHTML='<b>'+esc(p.name)+'</b><br><span style="font-size:.88rem;color:var(--quiet)">'+esc(p.address||'')+(p.rating?(' &middot; '+p.rating+' stars, '+p.count+' reviews'):'')+'</span>';
+        el.onclick=function(){ showKit('https://search.google.com/local/writereview?placeid='+encodeURIComponent(p.id), p.name); };
+        box.appendChild(el);
+      });
+    })
+    .catch(function(){ btn.disabled=false; btn.textContent='Search'; document.getElementById('searchFail').style.display='block'; });
+}
+function usePasted(){
+  var u=document.getElementById('pasted').value.trim();
+  if(u.indexOf('http')!==0){ document.getElementById('pasted').style.borderColor='#b2492e'; return; }
+  showKit(u, document.getElementById('bizq').value.trim()||'Your business');
+}
+function showKit(link, name){
+  currentLink=link; currentBiz=name;
+  document.getElementById('output').hidden=false;
+  document.getElementById('cta').hidden=false;
+  document.getElementById('bizLabel').textContent=name+': your direct review link';
+  document.getElementById('finalLink').textContent=link;
+  document.getElementById('qrbox').innerHTML='';
+  qrObj=new QRCode(document.getElementById('qrbox'),{text:link,width:180,height:180,colorDark:'#182620',colorLight:'#ffffff'});
+  document.getElementById('output').scrollIntoView({behavior:'smooth'});
+}
+function copyLink(){ navigator.clipboard.writeText(currentLink); }
+function downloadQR(){
+  var img=document.querySelector('#qrbox img')||document.querySelector('#qrbox canvas');
+  var url = img.tagName==='IMG' ? img.src : img.toDataURL('image/png');
+  var a=document.createElement('a'); a.href=url; a.download='google-review-qr.png'; a.click();
+}
+function emailKit(){
+  var em=document.getElementById('kitEmail').value.trim();
+  if(em.indexOf('@')<1) return;
+  var img=document.querySelector('#qrbox img')||document.querySelector('#qrbox canvas');
+  var dataUrl = img ? (img.tagName==='IMG'?img.src:img.toDataURL('image/png')) : '';
+  var btn=document.getElementById('kitBtn'); btn.disabled=true;
+  fetch('/api/toolkit',{method:'POST',headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({email:em,tool:'qr-kit',biz:currentBiz,link:currentLink,qr:dataUrl,consent:document.getElementById('kitConsent').checked,utm:location.search.slice(1)})})
+    .then(function(r){return r.json();})
+    .then(function(d){ if(d.ok){document.getElementById('kitDone').style.display='block';} btn.disabled=false; })
+    .catch(function(){ btn.disabled=false; });
+}
+function esc(s){ return String(s).replace(/[<>&]/g,function(c){return {'<':'&lt;','>':'&gt;','&':'&amp;'}[c];}); }
+document.getElementById('bizq').addEventListener('keydown',function(e){ if(e.key==='Enter') doSearch(); });
+</script>
+</body>
+</html>

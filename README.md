@@ -13,11 +13,17 @@ Private backup and cross-machine handoff repo for the WellEarnedReviews project.
 - `HANDOFF.md` — current state, open items, next build.
 - `WER-PROJECT-KNOWLEDGE.md` — project context pack.
 - `docs/` — dated decision docs, specs, competitor teardowns, runbooks.
-- `site/` — shipped site as dated zips (latest wins) plus the demo videos and narration script. The live site runs on Vercel (project `wellearnedreviews`); these zips are the source snapshots.
+- `site/src/` — the live site as real, editable files (HTML pages, the `api/` serverless functions, images). This is the working source. The site runs on Vercel (project `wellearnedreviews`).
+- `site/archive-zips/` — frozen dated snapshots of the site from before it was unpacked into `src/`. History only; do not edit.
+- `site/` also holds the demo videos and narration script.
 - `automation/` — deploy and migration scripts.
 - `gatherup.com screenshots/` — competitor reference captures.
 - Logo and favicon source files at the root.
 - `skills/` — the three Cowork skills this project relies on, so an agent on another machine has them without a separate install (see below).
+
+## Working on the site
+
+Edit files directly under `site/src/` and commit. Git tracks line-level diffs, so changes are reviewable and merge cleanly between machines. Do not add new whole-site zips; `site/archive-zips/` is closed history. To deploy, zip `site/src/` (or point the deploy at it) and push through the usual Vercel REST flow noted in the docs.
 
 ## Skills
 

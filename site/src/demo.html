@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Live Demo: Your WellEarnedReviews Scoreboard</title>
+<meta name="description" content="This is the dashboard a WellEarnedReviews customer sees: four numbers, recent reviews, and AI-drafted replies waiting for a one-tap approval.">
+<link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://wellearnedreviews.com/demo">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<meta property="og:title" content="Live Demo: Your WellEarnedReviews Scoreboard">
+<meta property="og:description" content="This is the dashboard a WellEarnedReviews customer sees: four numbers, recent reviews, and AI-drafted replies waiting for a one-tap approval.">
+<meta property="og:url" content="https://wellearnedreviews.com/demo">
+<meta property="og:image" content="https://wellearnedreviews.com/img/wer-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJW8E3ZW0S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KJW8E3ZW0S');</script><script defer src="/_vercel/insights/script.js"></script><script src="https://analytics.ahrefs.com/analytics.js" data-key="i+VM9lywOEdbn1zVOIK2nQ" async></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28">
+      WellEarnedReviews
+    </a>
+    <nav class="main">
+      <a class="navlink" href="/#how">How it works</a>
+      <a class="navlink" href="/#pricing">Pricing</a>
+      <a class="btn" href="/signup">Start for $99</a>
+    </nav>
+  </div>
+</header>
+<div class="mnav" aria-label="Quick navigation"><a href="/google-review-link-generator">Free tools</a><a href="/demo">Demo</a><a href="/#how">How it works</a><a href="/#pricing">Pricing</a><a href="/contact">Contact</a><a href="/login">Customer login</a></div>
+
+<main>
+<section>
+  <div class="wrap" style="max-width:860px">
+    <p class="kicker">Live demo</p>
+    <h1 class="sec">This is the whole dashboard. That's the point.</h1>
+    <p class="demo-note">Demo account: Ridgeline Roofing, Lincoln CA. The numbers are sample data, but this is exactly what yours looks like. You reach it from a link we text you. There is no password.</p>
+
+    <div class="score">
+      <div class="tile"><p class="k">Google rating</p><p class="v">4.7</p><p class="d">was 4.2 in April</p></div>
+      <div class="tile"><p class="k">Total reviews</p><p class="v">132</p><p class="d">+14 this month</p></div>
+      <div class="tile"><p class="k">Requests sent</p><p class="v">61</p><p class="d">this month</p></div>
+      <div class="tile"><p class="k">Clicked &rarr; reviewed</p><p class="v">39&rarr;14</p><p class="d">23% became reviews</p></div>
+    </div>
+
+    <h3 style="margin:34px 0 16px;font-size:1.3rem">Recent activity</h3>
+
+    <div class="rev">
+      <p><span class="who">Sarah M.</span> &middot; <span class="stars" aria-label="5 stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span> <span class="mono" style="font-size:.8rem;color:var(--quiet)">TUE 2:41 PM</span></p>
+      <p class="body">"Fast, tidy, and the price matched the quote. Highly recommend."</p>
+      <div class="ai"><span class="tag">REPLY POSTED AUTOMATICALLY, 12 MIN LATER</span>Thank you, Sarah. The crew enjoyed this one, and we're glad the final number matched the quote. That's how we like to run things. Enjoy the new roof!</div>
+    </div>
+
+    <div class="rev" id="pending">
+      <p><span class="who">Dale K.</span> &middot; <span class="stars low" aria-label="2 stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span> <span class="mono" style="font-size:.8rem;color:var(--quiet)">TUE 9:12 AM</span></p>
+      <p class="body">"Work was fine but they showed up two hours late and nobody called."</p>
+      <div class="ai">
+        <span class="tag">DRAFT REPLY, WAITING FOR YOUR OK (SENT TO YOUR PHONE 9:14 AM)</span>
+        <span id="draftText">Dale, you're right, and we're sorry. Running late happens, but not calling you about it isn't acceptable, and we've talked it through with the crew. If anything about the work itself ever needs a second look, call me directly. Mike, owner.</span>
+        <p style="margin-top:12px" id="approveRow">
+          <button class="btn" onclick="approveDemo()">Approve &amp; post</button>
+          <button class="btn ghost" onclick="alert('In the real product this opens the draft in an editable text box.')">Edit first</button>
+        </p>
+        <p class="posted" id="postedMsg" style="display:none">Posted to Google. Dale also got a private text asking what we can make right.</p>
+      </div>
+    </div>
+
+    <div class="rev">
+      <p><span class="who">Weekly digest</span> <span class="mono" style="font-size:.8rem;color:var(--quiet)">EVERY MONDAY, 8 AM</span></p>
+      <p class="body" style="background:var(--paper-2);border:1px solid var(--edge);border-radius:6px;padding:14px;font-size:.94rem">
+        Morning, Mike. Last week: 3 new reviews (two 5-star, one 4-star), average now 4.7. We sent 16 requests, 11 clicked. Rachel P. and Tom D. got their reminder Friday. This week 9 requests are queued from the jobs you texted in. Nothing needs your attention.
+      </p>
+    </div>
+
+    <h3 style="margin:34px 0 16px;font-size:1.3rem">Adding a customer takes one text</h3>
+    <div class="rev">
+      <p class="body" style="font-family:'JetBrains Mono',monospace;font-size:.92rem">
+        <b>You, to your WER number:</b> Sarah 916-555-0134 roof replacement<br>
+        <b>WER:</b> Got it. Sarah's check-in goes out tomorrow at 10am. Reply SKIP to skip her.
+      </p>
+    </div>
+
+    <div style="text-align:center;margin-top:44px">
+      <a class="btn big" href="/signup">Start my $99 month</a>
+      <p class="fineprint" style="margin-top:12px">Then $249/month, or $174/month billed annually. Cancel monthly with a text.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28"><span class="name">WellEarnedReviews</span></a>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="/#how">How it works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/signup">Sign up</a>
+        <a href="/google-review-link-generator">Free tools: Review link + QR</a>
+        <a href="/ai-review-response-generator">AI response generator</a>
+        <a href="/review-request-templates">Request templates</a>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <a href="/google-business-profile-setup">Set up your Google profile</a>
+        <a href="/good-review-examples">Good review examples</a>
+        <a href="/reputation-marketing">Reputation marketing</a>
+        <a href="/best-reputation-management-software">Best reputation software</a>
+        <a href="/hotel-review-management">Hotel review management</a>
+        <a href="/dental-review-management">Dental review management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="tel:+16194520435">Call or text (619) 452-0435</a>
+        <a href="/contact">Contact us</a>
+        <a href="/login">Customer login</a>
+        <a href="/integrations">Integrations</a>
+        <a href="/privacy">Privacy policy</a>
+        <a href="/terms">Terms of service</a>
+      </div>
+    </div>
+    <p class="legal">&copy; 2026 WellEarnedReviews. Demo data is illustrative.</p>
+  </div>
+</footer>
+
+<script>
+function approveDemo(){
+  document.getElementById('approveRow').style.display='none';
+  document.getElementById('postedMsg').style.display='block';
+}
+</script>
+</body>
+</html>

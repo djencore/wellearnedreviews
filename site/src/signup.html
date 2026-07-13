@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign Up: WellEarnedReviews</title>
+<meta name="description" content="Sign up for WellEarnedReviews in three short steps: your business, your Google listing, and how to reach you. $99 first month, cancel with a text.">
+<link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://wellearnedreviews.com/signup">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<meta property="og:title" content="Sign Up">
+<meta property="og:description" content="Start your $99 first month of WellEarnedReviews. Three short questions, no payment today.">
+<meta property="og:url" content="https://wellearnedreviews.com/signup">
+<meta property="og:image" content="https://wellearnedreviews.com/img/wer-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJW8E3ZW0S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KJW8E3ZW0S');</script><script defer src="/_vercel/insights/script.js"></script><script src="https://analytics.ahrefs.com/analytics.js" data-key="i+VM9lywOEdbn1zVOIK2nQ" async></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28">
+      WellEarnedReviews
+    </a>
+  </div>
+</header>
+<div class="mnav" aria-label="Quick navigation"><a href="/google-review-link-generator">Free tools</a><a href="/demo">Demo</a><a href="/#how">How it works</a><a href="/#pricing">Pricing</a><a href="/contact">Contact</a><a href="/login">Customer login</a></div>
+
+<main>
+<section>
+  <div class="wrap" style="max-width:640px">
+    <p class="kicker">Sign up</p>
+    <h1 class="sec">Three short questions. No payment today.</h1>
+
+    <div class="card">
+      <div class="wizard-steps" aria-hidden="true"><span class="on" id="w1"></span><span id="w2"></span><span id="w3"></span></div>
+
+      <form id="signup" novalidate>
+        <!-- honeypot -->
+        <input type="text" name="company_website_2" id="hp" style="position:absolute;left:-6000px" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+        <div class="fstep" id="s1">
+          <p class="step-label">STEP 1 OF 3</p>
+          <h3 style="margin-top:6px">Your business</h3>
+          <label for="biz">Business name
+            <span class="hint">Exactly as it appears on Google</span>
+          </label>
+          <input type="text" id="biz" name="biz" autocomplete="organization" required>
+          <label for="city">City and state</label>
+          <input type="text" id="city" name="city" placeholder="Lincoln, CA" required>
+          <label for="kind">What kind of work do you do?
+            <span class="hint">Roofing, dental, auto repair, salon... whatever you'd tell a neighbor</span>
+          </label>
+          <input type="text" id="kind" name="kind" required>
+          <label style="font-weight:400;display:flex;gap:10px;align-items:flex-start;margin-top:20px;cursor:pointer">
+            <input type="checkbox" id="nogbp" style="margin-top:5px;width:18px;height:18px;accent-color:#00a06b">
+            <span>I don't have a Google Business Profile yet.<span class="hint">No problem. Guided setup is included: you answer a few texts and film one 60-second video, we do the rest.</span></span>
+          </label>
+          <p style="margin-top:24px"><button type="button" class="btn big" style="width:100%" onclick="goStep(2)">Next</button></p>
+        </div>
+
+        <div class="fstep" id="s2" hidden>
+          <p class="step-label">STEP 2 OF 3</p>
+          <h3 style="margin-top:6px">You</h3>
+          <label for="name">Your first name</label>
+          <input type="text" id="name" name="name" autocomplete="given-name" required>
+          <label for="cell">Your cell number
+            <span class="hint">This is where your dashboard link and review alerts go</span>
+          </label>
+          <input type="tel" id="cell" name="cell" autocomplete="tel" placeholder="(555) 000-0000" required>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" autocomplete="email" required>
+          <p style="margin-top:24px"><button type="button" class="btn big" style="width:100%" onclick="goStep(3)">Next</button></p>
+          <p style="margin-top:10px;text-align:center"><a href="#" onclick="goStep(1);return false" style="font-size:.9rem">Back</a></p>
+        </div>
+
+        <div class="fstep" id="s3" hidden>
+          <p class="step-label">STEP 3 OF 3</p>
+          <h3 style="margin-top:6px">Your plan</h3>
+          <div style="background:var(--trust-soft);border:1px solid #c3e6d6;border-radius:6px;padding:18px;margin:16px 0">
+            <p><b>First 30 days: <span class="num">$99</span></b>, then <span class="num">$249</span>/month, or <span class="num">$174</span>/month billed annually (30% off).</p>
+            <p style="font-size:.93rem;color:var(--coal-2);margin-top:8px">Unlimited requests, AI replies, QR kit, weekly digest, monthly report. No setup fee, no contract. Cancel with a text.</p>
+          </div>
+          <p class="fineprint" style="margin-bottom:12px">The intro month covers your first 50 customers enrolled; the full past-customer reactivation begins at the regular rate. Annual plans: the 30% discount applies to completed terms. Cancel early and we refund the remainder, with used months billed at the standard monthly rate.</p>
+          <p style="font-size:.95rem;color:var(--coal-2)">You will not be charged today. We'll text you within one business hour to set up your number, your review link, and billing. The call takes about ten minutes and your first requests can go out the same day. Your first month carries a 30-day money-back guarantee: not happy, the $99 comes back.</p>
+          <p style="margin-top:24px"><button type="submit" class="btn big" style="width:100%" id="submitBtn">Start my $99 month</button></p>
+          <p style="margin-top:10px;text-align:center"><a href="#" onclick="goStep(2);return false" style="font-size:.9rem">Back</a></p>
+          <p id="err" style="display:none;color:var(--alert);margin-top:12px;font-weight:600">Something hiccuped on our end. Try once more, or text (619) 452-0435 and a human will set you up.</p>
+        </div>
+      </form>
+
+      <div id="done" hidden>
+        <h3>You're in, <span id="doneName"></span>.</h3>
+        <p style="margin:14px 0;color:var(--coal-2)">We just got your signup. Expect a text from us within one business hour to finish setup. It takes about ten minutes, and your first review requests can go out today.</p>
+        <p style="margin:0 0 10px;color:var(--coal-2)"><b>Want to skip a step?</b> You can lock in your plan right now. Card goes in, sequences go out.</p>
+        <p style="margin:0 0 8px"><button class="btn big" style="width:100%" id="payMonthly">Pay $99 now (then $249/mo)</button></p>
+        <p style="margin:0 0 14px"><button class="btn big" style="width:100%;background:var(--trust-deep)" id="payAnnual">Annual: $2,088/yr (save $900)</button></p>
+        <p id="payErr" style="display:none;color:var(--alert);font-weight:600;margin:0 0 10px">Checkout hiccuped. No charge happened. Try again or just wait for our text.</p>
+        <p style="color:var(--coal-2)">Prefer a human first? Totally fine, that's the default. Curious what your scoreboard will look like? <a href="/demo">Take the demo for a spin</a> while you wait.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28"><span class="name">WellEarnedReviews</span></a>
+      </div>
+      <div>
+        <h4>Product</h4>
+        <a href="/#how">How it works</a>
+        <a href="/#pricing">Pricing</a>
+        <a href="/demo">Live demo</a>
+        <a href="/google-review-link-generator">Free tools: Review link + QR</a>
+        <a href="/ai-review-response-generator">AI response generator</a>
+        <a href="/review-request-templates">Request templates</a>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <a href="/google-business-profile-setup">Set up your Google profile</a>
+        <a href="/good-review-examples">Good review examples</a>
+        <a href="/reputation-marketing">Reputation marketing</a>
+        <a href="/best-reputation-management-software">Best reputation software</a>
+        <a href="/hotel-review-management">Hotel review management</a>
+        <a href="/dental-review-management">Dental review management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="tel:+16194520435">Call or text (619) 452-0435</a>
+        <a href="/contact">Contact us</a>
+        <a href="/login">Customer login</a>
+        <a href="/integrations">Integrations</a>
+        <a href="/privacy">Privacy policy</a>
+        <a href="/terms">Terms of service</a>
+      </div>
+    </div>
+    <p class="legal">&copy; 2026 WellEarnedReviews.</p>
+  </div>
+</footer>
+
+<script>
+function goStep(n){
+  var f={1:'s1',2:'s2',3:'s3'};
+  if(n===2){
+    if(!document.getElementById('biz').value.trim() || !document.getElementById('city').value.trim() || !document.getElementById('kind').value.trim()){
+      alertField('s1'); return;
+    }
+  }
+  if(n===3){
+    var em=document.getElementById('email').value;
+    if(!document.getElementById('name').value.trim() || !document.getElementById('cell').value.trim() || em.indexOf('@')<1){
+      alertField('s2'); return;
+    }
+  }
+  for(var k in f){ document.getElementById(f[k]).hidden = (parseInt(k)!==n); }
+  for(var i=1;i<=3;i++){ document.getElementById('w'+i).className = (i<=n?'on':''); }
+  window.scrollTo({top:0});
+}
+function alertField(stepId){
+  var el=document.querySelector('#'+stepId+' input:not([id=hp])');
+  document.querySelectorAll('#'+stepId+' input').forEach(function(i){ if(!i.value.trim() && i.id!=='hp'){ i.style.borderColor='#b2492e'; } i.addEventListener('input',function(){ this.style.borderColor=''; }); });
+}
+document.getElementById('signup').addEventListener('submit', function(e){
+  e.preventDefault();
+  var btn=document.getElementById('submitBtn');
+  btn.disabled=true; btn.textContent='Sending...';
+  var payload={
+    biz:document.getElementById('biz').value.trim(),
+    city:document.getElementById('city').value.trim(),
+    kind:document.getElementById('kind').value.trim(),
+    name:document.getElementById('name').value.trim(),
+    cell:document.getElementById('cell').value.trim(),
+    email:document.getElementById('email').value.trim(),
+    gbp:(document.getElementById('nogbp').checked?'needs setup':'has profile'),
+    hp:document.getElementById('hp').value,
+    utm:(location.search.slice(1)||'')+(document.referrer?('|ref:'+document.referrer):'')
+  };
+  fetch('/api/signup',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.ok){
+        document.getElementById('signup').hidden=true;
+        document.getElementById('doneName').textContent=payload.name;
+        document.getElementById('done').hidden=false;
+      } else { throw new Error('send failed'); }
+    })
+    .catch(function(){
+      btn.disabled=false; btn.textContent='Start my $99 month';
+      document.getElementById('err').style.display='block';
+    });
+});
+function startCheckout(plan, btn){
+  var email=document.getElementById('email').value.trim();
+  btn.disabled=true; var old=btn.textContent; btn.textContent='Opening secure checkout…';
+  fetch('/api/checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:email,plan:plan})})
+    .then(function(r){ return r.json(); })
+    .then(function(d){
+      if(d && d.ok && d.url){ location.href=d.url; }
+      else { throw new Error('no url'); }
+    })
+    .catch(function(){
+      btn.disabled=false; btn.textContent=old;
+      document.getElementById('payErr').style.display='block';
+    });
+}
+document.getElementById('payMonthly').addEventListener('click',function(){ startCheckout('monthly',this); });
+document.getElementById('payAnnual').addEventListener('click',function(){ startCheckout('annual',this); });
+</script>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Google Reputation Report for Your Business | WellEarnedReviews</title>
+<meta name="description" content="Type your business name, get your Google rating, review count, and the exact number of five-star reviews needed to move your average. Free, no signup.">
+<link rel="icon" href="/favicon.png" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://wellearnedreviews.com/free-reputation-report">
+<meta property="og:title" content="Free Google Reputation Report">
+<meta property="og:description" content="Your rating, your review count, and the exact number of reviews it takes to move your average. Instant and free.">
+<meta property="og:url" content="https://wellearnedreviews.com/free-reputation-report">
+<meta property="og:image" content="https://wellearnedreviews.com/img/wer-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Free Google Reputation Report","applicationCategory":"BusinessApplication","operatingSystem":"Web","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://wellearnedreviews.com/free-reputation-report","description":"Instant Google reputation report for any local business: current rating, review count, and the exact number of five-star reviews needed to reach a 4.5 or 4.8 average.","publisher":{"@type":"Organization","name":"WellEarnedReviews","url":"https://wellearnedreviews.com/"}}
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KJW8E3ZW0S"></script><script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','G-KJW8E3ZW0S');</script><script defer src="/_vercel/insights/script.js"></script><script src="https://analytics.ahrefs.com/analytics.js" data-key="i+VM9lywOEdbn1zVOIK2nQ" async></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28">
+      WellEarnedReviews
+    </a>
+    <nav class="main">
+      <a class="navlink" href="/#how">How it works</a>
+      <a class="navlink" href="/#pricing">Pricing</a>
+      <a class="navlink" href="/demo">See a demo</a>
+      <a class="btn" href="/signup">Start for $99</a>
+    </nav>
+  </div>
+</header>
+<div class="mnav" aria-label="Quick navigation"><a href="/google-review-link-generator">Free tools</a><a href="/demo">Demo</a><a href="/#how">How it works</a><a href="/#pricing">Pricing</a><a href="/contact">Contact</a><a href="/login">Customer login</a></div>
+
+<main>
+<section>
+  <div class="wrap tool-wrap">
+    <p class="kicker">Free report, no signup</p>
+    <h1 class="sec">Free Google reputation report</h1>
+    <p>Type your business name and get the numbers that matter in about ten seconds: your current Google rating, your review count, and exactly how many five-star reviews it would take to move your average. Then run your closest competitor and see how the race actually stands. No signup, no sales call to see your own numbers.</p>
+
+    <div class="tool-panel">
+      <h3>Find your business</h3>
+      <label for="bizq">Business name and city</label>
+      <div class="row">
+        <input type="text" id="bizq" placeholder="Ridgeline Roofing Lincoln CA" style="flex:1;min-width:220px">
+        <button class="btn" id="searchBtn" onclick="doSearch()">Get my report</button>
+      </div>
+      <div id="places"></div>
+      <p id="searchFail" style="display:none;color:var(--coal-2);margin-top:12px;font-size:.94rem">Search is napping right now. Try again in a minute, or text us the business name at (619) 452-0435 and we'll run the report for you.</p>
+    </div>
+
+    <div class="tool-panel" id="report" hidden>
+      <h3 id="repName"></h3>
+      <div class="result-box">
+        <p class="lead-line" id="repHeadline"></p>
+        <span class="mono" id="repStars"></span>
+      </div>
+      <div id="repBody" style="margin-top:14px"></div>
+      <div class="row" style="margin-top:14px">
+        <button class="btn small ghost" onclick="resetSearch()">Check a competitor</button>
+        <a class="btn small ghost" href="/google-review-link-generator">Get my review link + QR</a>
+      </div>
+
+      <h3 style="margin-top:24px">Email me this report</h3>
+      <p style="font-size:.92rem;color:var(--quiet);margin-bottom:8px">We'll send these numbers to your inbox so you can find them again in three months and see what changed.</p>
+      <div class="row">
+        <input type="email" id="repEmail" placeholder="you@yourbusiness.com" style="flex:1;min-width:220px">
+        <button class="btn small" id="repBtn" onclick="emailReport()">Send it</button>
+      </div>
+      <label style="font-weight:400;display:flex;gap:8px;align-items:flex-start;margin-top:12px;cursor:pointer;font-size:.9rem;color:var(--coal-2)">
+        <input type="checkbox" id="repConsent" style="margin-top:3px;accent-color:#00a06b">
+        <span>Also send me occasional tips on getting more reviews. Unsubscribe anytime.</span>
+      </label>
+      <p id="repDone" style="display:none;color:var(--ok);font-weight:700;margin-top:10px">Sent. Check your inbox.</p>
+    </div>
+
+    <div class="cta-strip" id="cta" hidden>
+      <p><b>The report tells you where you stand. It doesn't move the number.</b> WellEarnedReviews texts your customers after each job, asks politely, and reminds the ones who forgot. The math on this page starts changing in the first month.</p>
+      <a class="btn big" href="/signup">Start your $99 first month</a>
+    </div>
+
+    <div class="faq" style="margin-top:44px">
+      <h3 style="margin-bottom:8px">Quick answers</h3>
+      <details><summary>Where do these numbers come from?</summary><p>Straight from your public Google Business Profile listing, the same rating and review count anyone sees when they search for you. We don't estimate anything; the report is your live listing plus arithmetic.</p></details>
+      <details><summary>How is "reviews needed" calculated?</summary><p>Plain math on your current average. If you sit at 4.2 with 40 reviews, we calculate how many new five-star reviews it takes for the weighted average to cross 4.5 and 4.8. No model, no projection, just the formula Google's average implies.</p></details>
+      <details><summary>Why does the average matter so much?</summary><p>Search results show your stars before anyone reads a word. Crossing common filter thresholds like 4.5 changes how many people tap your listing instead of the next one. Recency and volume matter too, which is why steady asking beats a once-a-year push.</p></details>
+      <details><summary>Is this really free?</summary><p>Yes. The report is free and instant. We make our money on a paid service that does the review asking for you, and this is how we'd rather introduce ourselves.</p></details>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <a class="brand" href="/"><img class="mark" src="/img/wer-mark.png" alt="WellEarnedReviews logo" width="28" height="28"><span class="name">WellEarnedReviews</span></a>
+      </div>
+      <div>
+        <h4>Free tools</h4>
+        <a href="/google-review-link-generator">Review link + QR generator</a>
+        <a href="/ai-review-response-generator">AI review response generator</a>
+        <a href="/review-request-templates">Review request templates</a>
+        <a href="/free-reputation-report">Free reputation report</a>
+      </div>
+      <div>
+        <h4>Guides</h4>
+        <a href="/google-business-profile-setup">Set up your Google profile</a>
+        <a href="/good-review-examples">Good review examples</a>
+        <a href="/reputation-marketing">Reputation marketing</a>
+        <a href="/best-reputation-management-software">Best reputation software</a>
+        <a href="/hotel-review-management">Hotel review management</a>
+        <a href="/dental-review-management">Dental review management</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="tel:+16194520435">Call or text (619) 452-0435</a>
+        <a href="/contact">Contact us</a>
+        <a href="/login">Customer login</a>
+        <a href="/integrations">Integrations</a>
+        <a href="/privacy">Privacy policy</a>
+        <a href="/terms">Terms of service</a>
+      </div>
+    </div>
+    <p class="legal">&copy; 2026 WellEarnedReviews.</p>
+  </div>
+</footer>
+
+<script>
+var cur=null;
+function esc(s){return String(s==null?'':s).replace(/[<>&"]/g,function(c){return({'<':'&lt;','>':'&gt;','&':'&amp;','"':'&quot;'})[c];});}
+function toTarget(r,c,t){ if(!c||!r||r>=t) return 0; return Math.max(1,Math.ceil(c*(t-r)/(5-t))); }
+function doSearch(){
+  var q=document.getElementById('bizq').value.trim();
+  if(q.length<3) return;
+  var btn=document.getElementById('searchBtn'); btn.disabled=true; btn.textContent='Searching...';
+  fetch('/api/place-search?q='+encodeURIComponent(q))
+    .then(function(r){return r.json();})
+    .then(function(d){
+      btn.disabled=false; btn.textContent='Get my report';
+      var box=document.getElementById('places'); box.innerHTML='';
+      if(!d.ok || !d.places || !d.places.length){ document.getElementById('searchFail').style.display='block'; return; }
+      document.getElementById('searchFail').style.display='none';
+      d.places.forEach(function(p){
+        var el=document.createElement('div'); el.className='place-item';
+        el.innerHTML='<b>'+esc(p.name)+'</b><br><span style="font-size:.88rem;color:var(--quiet)">'+esc(p.address||'')+(p.rating?(' &middot; '+p.rating+' stars, '+p.count+' reviews'):'')+'</span>';
+        el.onclick=function(){ showReport(p); };
+        box.appendChild(el);
+      });
+    })
+    .catch(function(){ btn.disabled=false; btn.textContent='Get my report'; document.getElementById('searchFail').style.display='block'; });
+}
+function showReport(p){
+  cur=p;
+  var r=Number(p.rating)||0, c=Number(p.count)||0;
+  document.getElementById('repName').textContent='Reputation report: '+p.name;
+  var stars = r ? (r.toFixed(1)+' ★  across '+c+' review'+(c===1?'':'s')) : 'No public rating yet';
+  document.getElementById('repHeadline').textContent = r ? ('Your Google listing today') : 'A blank slate';
+  document.getElementById('repStars').textContent = stars;
+  var to45=toTarget(r,c,4.5), to48=toTarget(r,c,4.8), html='';
+  if(!c){
+    html+='<p>No reviews yet, which means the first ten will define you. That is genuinely an opportunity: a new listing that collects steady five-star reviews reads as a business on the way up.</p>';
+  } else {
+    if(r>=4.8){ html+='<p><b>Your average is excellent.</b> The job now is volume and recency: keep fresh reviews arriving so the listing never looks dormant. An average this high with a growing count is the strongest position on Google.</p>'; }
+    else if(r>=4.5){ html+='<p><b>You clear the 4.5 filter line.</b> '+(to48?('About <b>'+to48+'</b> more five-star review'+(to48===1?'':'s')+' would push you past 4.8, where the rating itself stops being a question.'):'')+' Recency matters as much as the average now.</p>'; }
+    else { html+='<p><b>Getting past 4.5 takes about '+to45+' five-star review'+(to45===1?'':'s')+'</b> at your current count. '+(to48?('Reaching 4.8 would take about '+to48+'.'):'')+' That number is the whole game: many searchers filter at 4+ or 4.5+, so each new five-star review is doing real work.</p>'; }
+    html+='<p style="font-size:.94rem;color:var(--coal-2)">The math: your average is the total stars divided by the count, so the lower your count, the faster it moves. Steady one-at-a-time requests also keep the reviews recent, which Google and customers both notice.</p>';
+  }
+  document.getElementById('repBody').innerHTML=html;
+  document.getElementById('report').hidden=false;
+  document.getElementById('cta').hidden=false;
+  document.getElementById('report').scrollIntoView({behavior:'smooth'});
+}
+function resetSearch(){ document.getElementById('bizq').value=''; document.getElementById('bizq').focus(); window.scrollTo({top:0,behavior:'smooth'}); }
+function emailReport(){
+  if(!cur) return;
+  var email=document.getElementById('repEmail').value.trim();
+  if(email.indexOf('@')<1) return;
+  var btn=document.getElementById('repBtn'); btn.disabled=true; btn.textContent='Sending...';
+  var r=Number(cur.rating)||0, c=Number(cur.count)||0;
+  fetch('/api/toolkit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({
+    tool:'report', email:email, biz:cur.name, rating:r?r.toFixed(1):'none', count:String(c),
+    to45:String(toTarget(r,c,4.5)), to48:String(toTarget(r,c,4.8)),
+    link:'https://search.google.com/local/writereview?placeid='+encodeURIComponent(cur.id),
+    consent: document.getElementById('repConsent').checked
+  })}).then(function(x){return x.json();}).then(function(d){
+    btn.disabled=false; btn.textContent='Send it';
+    if(d.ok){ document.getElementById('repDone').style.display='block'; }
+  }).catch(function(){ btn.disabled=false; btn.textContent='Send it'; });
+}
+document.getElementById('bizq').addEventListener('keydown',function(e){ if(e.key==='Enter') doSearch(); });
+</script>
+</body>
+</html>
