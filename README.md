@@ -23,7 +23,9 @@ Private backup and cross-machine handoff repo for the WellEarnedReviews project.
 
 ## Working on the site
 
-Edit files directly under `site/src/` and commit. Git tracks line-level diffs, so changes are reviewable and merge cleanly between machines. Do not add new whole-site zips; `site/archive-zips/` is closed history. To deploy, zip `site/src/` (or point the deploy at it) and push through the usual Vercel REST flow noted in the docs.
+Edit files directly under `site/src/` and commit. Git tracks line-level diffs, so changes are reviewable and merge cleanly between machines. Do not add new whole-site zips; `site/archive-zips/` is closed history.
+
+To deploy to Vercel production, run `automation/deploy.sh` from the repo root. It uploads `site/src/` to the `wellearnedreviews` project by file hash (no zip) and waits for READY. It reads `VERCEL_TOKEN` from the environment, or from `vercel.env` in your credentials dir (default `~/Documents/Projects/Home/credentials`, override with `WER_CREDENTIALS`).
 
 ## Skills
 
