@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Run this when you finish working. It saves everything and backs it up to
+# GitHub so your other computer can pick it up.
+#   ./done         save + back up
+#   ./done ship    save + back up + put the site live on the web
+set -euo pipefail
+cd "$(dirname "$0")"
+
+if [ -n "$(git status --porcelain)" ]; then
+  git add -A
+  git commit -q -m "update $(date '+%Y-%m-%d %H:%M') from $(hostname -s 2>/dev/null || hostname)"
+  echo "Saved your changes."
+else
+  echo "No new changes to save."
+fi
+
+git push -q origin main
+echo "Backed up to GitHub."
+
+if [ "${1:-}" = "ship" ]; then
+  echo
+  echo "Putting the site live..."
+  ./automation/deploy.sh
+  echo "Site is live."
+fi
+
+echo
+echo "All done. Safe to switch computers."

@@ -2,6 +2,15 @@
 
 Private backup and cross-machine handoff repo for the WellEarnedReviews project. This is a personal repo (single owner, multiple computers), not a team repo. Push from one machine, pull on another, and an AI agent picks up exactly where the last session left off.
 
+## Everyday use
+
+Two commands, run from the repo folder:
+
+- `./start` when you sit down to work. Pulls the latest version from your other computer.
+- `./done` when you finish. Saves everything and backs it up to GitHub. Use `./done ship` to also put the site live.
+
+The rule of thumb: `./start` at the beginning, `./done` at the end. That keeps both computers in sync. (Both are thin wrappers over `git pull` and `git add/commit/push`; you can run those directly if you prefer.)
+
 ## Start here
 
 1. Read `HANDOFF.md` at the repo root. It is the canonical, always-current state doc. When anything else disagrees with it, the handoff wins.

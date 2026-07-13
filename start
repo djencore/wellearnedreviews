@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Run this when you sit down to work on this project on any computer.
+# It pulls the latest version you pushed from your other computer.
+set -euo pipefail
+cd "$(dirname "$0")"
+echo "Getting the latest version..."
+git pull --ff-only
+echo
+echo "Ready. Edit your files, then run  ./done  when you're finished."
