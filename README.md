@@ -1,0 +1,38 @@
+# WellEarnedReviews (WER)
+
+Private backup and cross-machine handoff repo for the WellEarnedReviews project. This is a personal repo (single owner, multiple computers), not a team repo. Push from one machine, pull on another, and an AI agent picks up exactly where the last session left off.
+
+## Start here
+
+1. Read `HANDOFF.md` at the repo root. It is the canonical, always-current state doc. When anything else disagrees with it, the handoff wins.
+2. Read `WER-PROJECT-KNOWLEDGE.md` for the context pack (business model, what is live, conventions).
+3. Per-decision history and competitor teardowns live in `docs/`.
+
+## What is in here
+
+- `HANDOFF.md` — current state, open items, next build.
+- `WER-PROJECT-KNOWLEDGE.md` — project context pack.
+- `docs/` — dated decision docs, specs, competitor teardowns, runbooks.
+- `site/` — shipped site as dated zips (latest wins) plus the demo videos and narration script. The live site runs on Vercel (project `wellearnedreviews`); these zips are the source snapshots.
+- `automation/` — deploy and migration scripts.
+- `gatherup.com screenshots/` — competitor reference captures.
+- Logo and favicon source files at the root.
+- `skills/` — the three Cowork skills this project relies on, so an agent on another machine has them without a separate install (see below).
+
+## Skills
+
+`skills/` holds copies of the Cowork skills used to build and maintain WER:
+
+- `encore-writer` — the voice and anti-AI-detector writing rules. WER copy runs through this. Note the hard project rule: no em dashes or en dashes anywhere, including JSON-LD and code comments.
+- `talaria-site-designer` — site design and AI-discoverability approach used for the site.
+- `humanizer` — removes AI-writing tells from prose.
+
+These are snapshots for reference and handoff. To make them active in a Cowork session, drop them into the machine's skills directory (`~/.claude/skills/`).
+
+## Secrets
+
+No credentials are stored in this repo (`.gitignore` blocks `*.env` and similar). API keys, tokens, and the Google service-account JSON live outside the repo in `Home/credentials/` on each machine, referenced by path from the docs. Set those up on any new machine before running automation.
+
+## Conventions
+
+Work happens in Cowork sessions with the project folder connected (and `Home/credentials` when secrets are needed). One active session per project; a new session continues from `HANDOFF.md`, never by retrying a dead session. Before reporting anything done, verify it live and point to the evidence. Build tasks get a one-line acceptance test agreed up front.

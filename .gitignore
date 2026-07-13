@@ -1,0 +1,9 @@
+# Secrets never belong in this repo. Credentials live outside it, in
+# Home/credentials/ on each machine (referenced by path from the docs).
+*.env
+*secret*
+*credential*
+hermes-*.json
+
+# OS cruft
+.DS_Store
